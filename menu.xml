@@ -1,0 +1,15 @@
+<menu> 
+    <buttons> 
+        <button>
+            <label>Clover</label>
+        </button>
+        <button>
+            <label>Potato</label>
+        </button>
+        <button>
+            <label>Sunflower</label>
+        </button>
+    </buttons>
+ 
+</menu>
+
