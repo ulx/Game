@@ -165,12 +165,13 @@ public class main extends Sprite {
         for each (var modelElementMap:ItemElementMap in model) {
             mI = menu.findIdItemMenu(modelElementMap.name);
             elementMap = cmap.findActivElement(modelElementMap.x, modelElementMap.y);
-            if (cmap.findActivElement(modelElementMap.x, modelElementMap.y) != null) {
+            if ((cmap.findActivElement(modelElementMap.x, modelElementMap.y) != null)&&(mI != null)) {
                 elementMap.setElementParametrs(modelElementMap);
                 str = Settings.imageElementMap + "/" + mI.id + "/" + modelElementMap.state;
                 loader = new ElementMapLoader(str);
+                //elementMap.initImage(loader);
                 elementMap.initImage(loader);
-                //elementMap.initImage(cacheImage.findImage(str));
+
                 elementMap.level_max = mI.level_max
             }
         }
