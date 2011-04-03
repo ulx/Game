@@ -16,7 +16,7 @@ import model.ItemElementMap;
 
 public class ElementMap extends Sprite {
 
-    var square:Sprite = new Sprite();
+    var square:Sprite;
 
     var ID:int =0;
     var NAME:String = "default";
@@ -29,8 +29,7 @@ public class ElementMap extends Sprite {
     var numberColumn:int = 0;
     public function ElementMap()  {
         this.addEventListener(MouseEvent.CLICK, mouseClick);
-        this.addChild(square);
-        draw(3, 0x00ff00, 0);
+        setDefault();
     }
 
     private function mouseClick(e:MouseEvent):void {
@@ -38,7 +37,7 @@ public class ElementMap extends Sprite {
         draw(5, 0xaaff00, 1);
         notifyListeners(Settings.elementMapClick);
     }
-     private function   draw(style:int, color:uint, alphaE:int):void{
+     public function   draw(style:int, color:uint, alphaE:int):void{
          //this.alpha = alphaE;
         square.graphics.lineStyle(style, color, alphaE);
         square.graphics.beginFill(0x0000FF);
@@ -47,23 +46,31 @@ public class ElementMap extends Sprite {
         square.graphics.lineTo(55, 28);
         square.graphics.endFill();
      }
-     private function notifyListeners(ev:String) {
+     private function notifyListeners(ev:String):void {
           var e:Event = new Event(ev, false, false);
           dispatchEvent(e);
     }
     public function initImage(image:Sprite):void{
-        square.addChild(image);
-        square.width = 70;
-        square.height = 50;
         square.alpha = 1;
-        this.alpha = 1;
-      //  locate(167, 400);
+        square.addChild(image);
+        image.x = square.x;
+        image.y = square.y - Settings.dyMap/2;
+       // square.width = 100;
+       // square.height = 50;
+
+
+
     }
     public function locate(x:int, y:int):void{
         this.x = x;
         this.y = y;
     }
 
+    private function setDefault(): void{
+        square = new Sprite();
+        this.addChild(square);
+        draw(3, 0x00ff00, 0);
+    }
 
     public function setElementParametrs(itemElementMap:ItemElementMap):void{
         this.ID  = itemElementMap.id ;
@@ -71,6 +78,15 @@ public class ElementMap extends Sprite {
         this.NAME = itemElementMap.name;
         this.lineIndex = itemElementMap.x;
         this.columnIndex = itemElementMap.y;
+    }
+    public function resetElementParametrs():void{
+     ID = 0;
+     NAME = "default";
+     STATE = 0;
+     PLANT = 0;
+     STATUS = false;
+     this.removeChild(square);
+     setDefault();
     }
     public function get id():int{
           return this.ID;

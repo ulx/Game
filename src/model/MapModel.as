@@ -11,6 +11,7 @@ import flash.net.URLRequest;
 import flash.net.URLLoader
 import flash.events.Event;
 import flash.events.*;
+import flash.utils.setTimeout;
 public class MapModel extends EventDispatcher {
       private var xml:XML;
     private var loader:URLLoader;
@@ -22,7 +23,7 @@ public class MapModel extends EventDispatcher {
         loader.addEventListener(Event.COMPLETE, xmlLoaded);
         loader.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
         loader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-         loader.load(new URLRequest(s));
+        loader.load(new URLRequest(s));
     }
 
     public function load(s:String):void {
