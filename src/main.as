@@ -109,20 +109,24 @@ public class main extends Sprite {
             i++;
         }
 
+
     }
 
     private function buttonCollectedButtonPress(ev:String):void {
         var list = cmap.listElement;
         var i:int = 0;
-        while (i < list.length){
-            trace("list = " + list[i].stage/5);
-            if(list[i].stage/5 == 0)  {
+
+           for each(var item:ElementMap in cmap.listElement){
+                trace("list = " + item.state);
+              if((item.state == 5)||(item.state == 10)||(item.state == 15))  {
               commandServer = new  CommandServer();
-              commandServer.dig(list[i].lineIndex, list[i].columnIndex);
-                list[i].status = false;
-            }
-            i++
-        }
+              commandServer.dig(item.lineIndex, item.columnIndex);
+              item.status = false;
+              item.draw(3, 0x00ff00, 1);
+              item.resetElementParametrs();
+              }
+           }
+
     }
 
     private function buttonMakePress(ev:String):void {
@@ -132,15 +136,8 @@ public class main extends Sprite {
     }
 
     private function menuVisibleTrue(ev:MouseEvent):void {
-        var i:int = 0;
-        var item : ElementMap;
-      //  if ((cmap.findActivElement(ev.stageX + Settings.x0Map, ev.stageY + Settings.y0Map)) != null)  {
+         menu.draw(100,  100);
 
-       ///  item =  cmap.findActivElement(ev.stageX + Settings.x0Map, ev.stageY + Settings.y0Map);
-       //     if(!item.state) {
-                  menu.draw(ev.localX + 100,  ev.localY + 100);
-       //     }
-       // }
     }
 
     private function menuVisibleFalse(ev:String):void {
