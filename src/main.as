@@ -11,8 +11,7 @@ import Controller.CommandServer;
 import Controller.ElementMapLoader;
 
 import Setting.Settings;
-
-
+import cache.Cache;
 
 import model.ItemElementMap;
 
@@ -28,9 +27,9 @@ import flash.display.Sprite;
 
 import map.CMap;
 import map.ElementMap;
-import map.BackgroundMap;
-import model.MapModel
 
+
+import model.MapModel
 
 
 public class main extends Sprite {
@@ -39,54 +38,51 @@ public class main extends Sprite {
     var cmap:CMap;
     var plantButton:PlantButton;
     var makeButton:MakeButton;
-    var collectedButton:CollectedButton
+    var collectedButton:CollectedButton;
     var listPlantElementMap:Array;
     var commandServer:CommandServer;
     var mapModel:MapModel;
+    var cacheImage:Cache;
     public function main() {
         initGame();
 
-        this.x =  stage.x
-        this.y =  stage.y
-        this.width = stage.width/3;
-        this.height =  stage.height/3;
+        this.x = stage.x
+        this.y = stage.y
+        this.width = stage.width / 3;
+        this.height = stage.height / 3;
 
     }
 
     private function initGame():void {
 
 
-         cmap = new CMap();
-         menu = new CMenu();
-         modelMenu = new MenuModel();
-         makeButton = new MakeButton();
-         collectedButton = new CollectedButton();
-         plantButton = new PlantButton;
-         listPlantElementMap = new Array();
-      //   mapModel = new MapModel(Settings.commandTurn );
-       //  var  elementMapBackground:BackgroundMap = new BackgroundMap();
-         var background:ElementMapLoader = new ElementMapLoader(Settings.imageElementMap);
-
-         //Listener
-         menu.addEventListener(Settings.eventClickItemMenu, menuVisibleFalse);
-         menu.addEventListener(Settings.elementMapClick, menuVisibleTrue) ;
-        // mapModel.addEventListener(Settings.loadItemMap, initElementMap);
-         this.addEventListener(MouseEvent.CLICK, menuVisibleTrue);
+        cmap = new CMap();
+        menu = new CMenu();
+        modelMenu = new MenuModel();
+        makeButton = new MakeButton();
+        collectedButton = new CollectedButton();
+        plantButton = new PlantButton;
+        listPlantElementMap = new Array();
+        cacheImage = new Cache();
+        var background:ElementMapLoader = new ElementMapLoader(Settings.imageElementMap);
+        //Listener
+        menu.addEventListener(Settings.eventClickItemMenu, menuVisibleFalse);
+        menu.addEventListener(Settings.elementMapClick, menuVisibleTrue);
+        this.addEventListener(MouseEvent.CLICK, menuVisibleTrue);
 
 
-         modelMenu.addEventListener(Settings.loadItemMenu, initMenu);
-         plantButton.addEventListener(Settings.plantButton, buttonPlantButtonPress)
-         makeButton.addEventListener(Settings.makeButton, buttonMakePress);
-         collectedButton.addEventListener(Settings.collectedButton, buttonCollectedButtonPress);
-        //init element
-         cmap.initMap();
+        modelMenu.addEventListener(Settings.loadItemMenu, initMenu);
+        plantButton.addEventListener(Settings.plantButton, buttonPlantButtonPress)
+        makeButton.addEventListener(Settings.makeButton, buttonMakePress);
+        collectedButton.addEventListener(Settings.collectedButton, buttonCollectedButtonPress);
+        cmap.initMap();
 
-       //  elementMapBackground.initImage(background);
+        //  elementMapBackground.initImage(background);
 
         //Locate
         plantButton.locate(100, 50);
         makeButton.locate(100, 70);
-        collectedButton.locate(100,90);
+        collectedButton.locate(100, 90);
 
         //add
         this.addChild(background);
@@ -99,44 +95,37 @@ public class main extends Sprite {
 
     }
 
-    private function buttonPlantButtonPress(ev:String):void  {
+    private function buttonPlantButtonPress(ev:String):void {
         var i:int = 0;
-        trace(listPlantElementMap.length)
-        while(i < listPlantElementMap.length)  {
-            trace("line = " + listPlantElementMap[i].lineIndex + " column = " + listPlantElementMap[i].columnIndex);
-            commandServer = new  CommandServer();
+        while (i < listPlantElementMap.length) {
+            commandServer = new CommandServer();
             commandServer.seed(listPlantElementMap[i].lineIndex, listPlantElementMap[i].columnIndex, listPlantElementMap[i].plant);
             i++;
         }
-
-
     }
 
     private function buttonCollectedButtonPress(ev:String):void {
         var list = cmap.listElement;
         var i:int = 0;
-
-           for each(var item:ElementMap in cmap.listElement){
-                trace("list = " + item.state);
-              if((item.state == 5)||(item.state == 10)||(item.state == 15))  {
-              commandServer = new  CommandServer();
-              commandServer.dig(item.lineIndex, item.columnIndex);
-              item.status = false;
-              item.draw(3, 0x00ff00, 1);
-              item.resetElementParametrs();
-              }
-           }
+        for each(var item:ElementMap in cmap.listElement) {
+            if ((item.state == 5) || (item.state == 10) || (item.state == 15)) {
+                commandServer = new CommandServer();
+                commandServer.dig(item.lineIndex, item.columnIndex);
+                item.status = false;
+                item.draw(3, 0x00ff00, 1);
+                item.resetElementParametrs();
+            }
+        }
 
     }
 
     private function buttonMakePress(ev:String):void {
-            //  mapModel.load(Settings.commandTurn    );
-           mapModel = new MapModel(Settings.commandTurn);
-          mapModel.addEventListener(Settings.loadItemMap, initElementMap);
+        mapModel = new MapModel(Settings.commandTurn);
+        mapModel.addEventListener(Settings.loadItemMap, initElementMap);
     }
 
     private function menuVisibleTrue(ev:MouseEvent):void {
-         menu.draw(100,  100);
+        menu.draw(100, 100);
 
     }
 
@@ -144,45 +133,40 @@ public class main extends Sprite {
         var i:int = 0;
         var mI:MenuItem;
         menu.visibleFalse();
-        while (i < cmap.listElement.length){
-            trace(cmap.listElement[i].status)
-            if((cmap.listElement[i].status)&&(cmap.listElement[i].plant == 0))   {
+        while (i < cmap.listElement.length) {
+            if ((cmap.listElement[i].status) && (cmap.listElement[i].plant == 0)) {
                 mI = menu.findActivItemMenu();
-
-                cmap.listElement[i].plant =  mI.id;
-                trace( cmap.listElement[i].plant);
+                cmap.listElement[i].plant = mI.id;
                 listPlantElementMap.push(cmap.listElement[i]);
                 break;
-
             }
             i++;
         }
     }
 
     private function initElementMap(ev:String):void {
-
         var elementMap:ElementMap;
         var loader:ElementMapLoader;
-        var model =  mapModel.listElement;
-        var controller =  cmap.listElement;
-        var i:int =0;
-        var j:int =0;
-        var id:int =0;
-        for each (var modelElementMap:ItemElementMap in model ){
-           for each(var iE:ElementMap in cmap.listElement){
-               trace( "id = " + iE.id + " plant = " + iE.plant + " x = " + iE.x + " y = " + iE.y) ;
-           }
-           id = menu.findIdItemMenu(modelElementMap.name)
-          elementMap = cmap.findActivElement(modelElementMap.x,modelElementMap.y);
-            if  (cmap.findActivElement(modelElementMap.x,modelElementMap.y) != null){
-
-             elementMap.setElementParametrs(modelElementMap);
-                    trace(elementMap.plant);
-             loader = new  ElementMapLoader(Settings.imageElementMap + "/" + id + "/" + modelElementMap.state);
-             elementMap.initImage(loader);
+        var model = mapModel.listElement;
+        var controller = cmap.listElement;
+        var i:int = 0;
+        var j:int = 0;
+        var id:int = 0;
+        for each (var modelElementMap:ItemElementMap in model) {
+            id = menu.findIdItemMenu(modelElementMap.name)
+            elementMap = cmap.findActivElement(modelElementMap.x, modelElementMap.y);
+            if (cmap.findActivElement(modelElementMap.x, modelElementMap.y) != null) {
+                elementMap.setElementParametrs(modelElementMap);
+               if (cacheImage.isImage(Settings.imageElementMap + "/" + id + "/" + modelElementMap.state)){
+                      elementMap.initImage(cacheImage.findImage(Settings.imageElementMap + "/" + id + "/" + modelElementMap.state));
+               }   else{
+                cacheImage.loadImage(Settings.imageElementMap + "/" + id + "/" + modelElementMap.state);
+                loader = new ElementMapLoader(Settings.imageElementMap + "/" + id + "/" + modelElementMap.state);
+                elementMap.initImage(loader);
+               }
 
             }
-           }
+        }
 
     }
 

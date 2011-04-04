@@ -12,13 +12,13 @@ import flash.display.Sprite;
 import flash.display.Loader;
 import flash.events.MouseEvent;
 import flash.events.Event;
+
 import model.ItemElementMap;
 
 public class ElementMap extends Sprite {
 
     var square:Sprite;
-
-    var ID:int =0;
+    var ID:int = 0;
     var NAME:String = "default";
     var STATE:int = 0;
     var locateX:int = 0;
@@ -27,7 +27,8 @@ public class ElementMap extends Sprite {
     var STATUS:Boolean = false;
     var numberLine:int = 0;
     var numberColumn:int = 0;
-    public function ElementMap()  {
+
+    public function ElementMap() {
         this.addEventListener(MouseEvent.CLICK, mouseClick);
         setDefault();
     }
@@ -37,95 +38,111 @@ public class ElementMap extends Sprite {
         draw(5, 0xaaff00, 1);
         notifyListeners(Settings.elementMapClick);
     }
-     public function   draw(style:int, color:uint, alphaE:int):void{
-         //this.alpha = alphaE;
+
+    public function draw(style:int, color:uint, alphaE:int):void {
         square.graphics.lineStyle(style, color, alphaE);
         square.graphics.beginFill(0x0000FF);
         square.graphics.lineTo(55, -28);
         square.graphics.lineTo(110, 0);
         square.graphics.lineTo(55, 28);
         square.graphics.endFill();
-     }
-     private function notifyListeners(ev:String):void {
-          var e:Event = new Event(ev, false, false);
-          dispatchEvent(e);
     }
-    public function initImage(image:Sprite):void{
+
+    private function notifyListeners(ev:String):void {
+        var e:Event = new Event(ev, false, false);
+        dispatchEvent(e);
+    }
+
+    public function initImage(image:Sprite):void {
         square.alpha = 1;
         square.addChild(image);
         image.x = square.x;
-        image.y = square.y - Settings.dyMap/2;
-       // square.width = 100;
-       // square.height = 50;
-
+        image.y = square.y - Settings.dyMap / 2;
+        // square.width = 100;
+        // square.height = 50;
 
 
     }
-    public function locate(x:int, y:int):void{
+
+    public function locate(x:int, y:int):void {
         this.x = x;
         this.y = y;
     }
 
-    private function setDefault(): void{
+    private function setDefault():void {
         square = new Sprite();
         this.addChild(square);
         draw(3, 0x00ff00, 0);
     }
 
-    public function setElementParametrs(itemElementMap:ItemElementMap):void{
-        this.ID  = itemElementMap.id ;
+    public function setElementParametrs(itemElementMap:ItemElementMap):void {
+        this.ID = itemElementMap.id;
         this.STATE = itemElementMap.state;
         this.NAME = itemElementMap.name;
         this.lineIndex = itemElementMap.x;
         this.columnIndex = itemElementMap.y;
     }
-    public function resetElementParametrs():void{
-     ID = 0;
-     NAME = "default";
-     STATE = 0;
-     PLANT = 0;
-     STATUS = false;
-     this.removeChild(square);
-     setDefault();
+
+    public function resetElementParametrs():void {
+        ID = 0;
+        NAME = "default";
+        STATE = 0;
+        PLANT = 0;
+        STATUS = false;
+        this.removeChild(square);
+        setDefault();
     }
-    public function get id():int{
-          return this.ID;
+
+    public function get id():int {
+        return this.ID;
     }
-    public function set id(id:int):void{
-          this.ID = id;
+
+    public function set id(id:int):void {
+        this.ID = id;
     }
-    public function get status():Boolean{
+
+    public function get status():Boolean {
         return this.STATUS;
     }
-    public function set status(status:Boolean):void{
-         this.STATUS = status;
+
+    public function set status(status:Boolean):void {
+        this.STATUS = status;
     }
-    public function get state():int{
+
+    public function get state():int {
         return this.STATE;
     }
-     public function set state(state:int):void{
-         this.STATE = state ;
+
+    public function set state(state:int):void {
+        this.STATE = state;
     }
-     public function get nameElement():String{
+
+    public function get nameElement():String {
         return this.NAME;
     }
-     public function get plant():int{
+
+    public function get plant():int {
         return this.PLANT;
     }
-    public function set plant(id_palant:int):void{
-         this.PLANT = id_palant;
+
+    public function set plant(id_palant:int):void {
+        this.PLANT = id_palant;
     }
-    public function get lineIndex():int{
+
+    public function get lineIndex():int {
         return this.numberLine;
     }
-    public function set lineIndex(index:int):void{
-         this.numberLine = index;
+
+    public function set lineIndex(index:int):void {
+        this.numberLine = index;
     }
-     public function get columnIndex():int{
+
+    public function get columnIndex():int {
         return this.numberColumn;
     }
-    public function set columnIndex(index:int):void{
-         this.numberColumn = index;
+
+    public function set columnIndex(index:int):void {
+        this.numberColumn = index;
     }
 }
 }
