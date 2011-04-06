@@ -11,7 +11,7 @@ import flash.net.URLRequest;
 import flash.net.URLLoader
 import flash.events.Event;
 import flash.events.*;
-import flash.utils.setTimeout;
+
 public class MapModel extends EventDispatcher {
     private var xml:XML;
     private var loader:URLLoader;

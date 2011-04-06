@@ -11,6 +11,7 @@ import Controller.CommandServer;
 import Controller.ElementMapLoader;
 
 import Setting.Settings;
+
 import cache.Cache;
 
 import model.ItemElementMap;
@@ -43,6 +44,7 @@ public class main extends Sprite {
     var commandServer:CommandServer;
     var mapModel:MapModel;
     var cacheImage:Cache;
+
     public function main() {
         initGame();
 
@@ -150,8 +152,7 @@ public class main extends Sprite {
         var loader:ElementMapLoader;
         var model = mapModel.listElement;
         var controller = cmap.listElement;
-        var i:int = 0;
-        var j:int = 0;
+        var str:String;
         var id:int = 0;
         cmap.initMap(mapModel.getMapSettings);
         for each (var modelElementMap:ItemElementMap in model) {
@@ -159,15 +160,17 @@ public class main extends Sprite {
             elementMap = cmap.findActivElement(modelElementMap.x, modelElementMap.y);
             if (cmap.findActivElement(modelElementMap.x, modelElementMap.y) != null) {
                 elementMap.setElementParametrs(modelElementMap);
-          //     if (cacheImage.isImage(Settings.imageElementMap + "/" + id + "/" + modelElementMap.state)){
-          //            elementMap.initImage(cacheImage.findImage(Settings.imageElementMap + "/" + id + "/" + modelElementMap.state));
-          //     }   else{
-             //  cacheImage.loadImage(Settings.imageElementMap + "/" + id + "/" + modelElementMap.state);
-                loader = new ElementMapLoader(Settings.imageElementMap + "/" + id + "/" + modelElementMap.state);
-                elementMap.initImage(loader);
-               }
+                str = Settings.imageElementMap + "/" + id + "/" + modelElementMap.state;
+                if (cacheImage.isImage(str) == true) {
+                    trace("find cache = true");
+                    elementMap.initImage(cacheImage.findImage(str));
+                } else {
+                    loader = new ElementMapLoader(str);
+                    cacheImage.addItem(str, loader);
+                    elementMap.initImage(cacheImage.findImage(str));
+                }
 
-           // }
+            }
         }
 
     }

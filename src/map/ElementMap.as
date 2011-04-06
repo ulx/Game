@@ -36,8 +36,8 @@ public class ElementMap extends Sprite {
     private function mouseClick(e:MouseEvent):void {
         STATUS = true;
 
-        draw(0, 0xff00cc, 0.5);
-        // square.graphics.beginFill(0x0000cc,1);
+        draw(1, 0xffaacc, 0.5);
+
 
         notifyListeners(Settings.elementMapClick);
     }
@@ -62,7 +62,7 @@ public class ElementMap extends Sprite {
         square.addChild(image);
         image.x = square.x;
         image.y = square.y - Settings.dyMap / 2;
-       // image.getBounds(this);
+
       //  square.width = Settings.dxMap;
       //  square.height = Settings.dyMap;
 
