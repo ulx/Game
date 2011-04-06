@@ -35,16 +35,20 @@ public class ElementMap extends Sprite {
 
     private function mouseClick(e:MouseEvent):void {
         STATUS = true;
-        draw(5, 0xaaff00, 1);
+
+        draw(0, 0xff00cc, 0.5);
+        // square.graphics.beginFill(0x0000cc,1);
+
         notifyListeners(Settings.elementMapClick);
     }
 
     public function draw(style:int, color:uint, alphaE:int):void {
         square.graphics.lineStyle(style, color, alphaE);
-        square.graphics.beginFill(0x0000FF);
+        square.graphics.beginFill(0x0000FF, alphaE);
         square.graphics.lineTo(55, -28);
         square.graphics.lineTo(110, 0);
         square.graphics.lineTo(55, 28);
+        square.graphics.lineTo(0, 0);
         square.graphics.endFill();
     }
 
@@ -54,12 +58,13 @@ public class ElementMap extends Sprite {
     }
 
     public function initImage(image:Sprite):void {
-        square.alpha = 1;
+      //  square.alpha = 1;
         square.addChild(image);
         image.x = square.x;
         image.y = square.y - Settings.dyMap / 2;
-        // square.width = 100;
-        // square.height = 50;
+       // image.getBounds(this);
+      //  square.width = Settings.dxMap;
+      //  square.height = Settings.dyMap;
 
 
     }

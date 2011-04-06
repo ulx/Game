@@ -34,11 +34,11 @@ public class Cache extends EventDispatcher{
     }
 
    // public
-    public function loadImage(s:String):void{
+    public function loadImageCache(s:String):void{
         id = s;
         loader = new URLLoader();
         loader.load(new URLRequest(s));
-        loader.addEventListener(Event.COMPLETE, imageComplite);
+        loader.addEventListener(Event.COMPLETE, imageCompliteCache);
         loader.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
         loader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
 
@@ -49,7 +49,7 @@ public class Cache extends EventDispatcher{
        private function ioErrorHandler(e:Event):void {
            trace("ioErrorHandler");
     }
-    private function imageComplite(e:Event):void {
+    private function imageCompliteCache(e:Event):void {
         var sprite = new Sprite();
         sprite.addChild(e.target.data);
         element = new Array();

@@ -75,7 +75,7 @@ public class main extends Sprite {
         plantButton.addEventListener(Settings.plantButton, buttonPlantButtonPress)
         makeButton.addEventListener(Settings.makeButton, buttonMakePress);
         collectedButton.addEventListener(Settings.collectedButton, buttonCollectedButtonPress);
-        cmap.initMap();
+
 
         //  elementMapBackground.initImage(background);
 
@@ -122,6 +122,7 @@ public class main extends Sprite {
     private function buttonMakePress(ev:String):void {
         mapModel = new MapModel(Settings.commandTurn);
         mapModel.addEventListener(Settings.loadItemMap, initElementMap);
+
     }
 
     private function menuVisibleTrue(ev:MouseEvent):void {
@@ -152,20 +153,21 @@ public class main extends Sprite {
         var i:int = 0;
         var j:int = 0;
         var id:int = 0;
+        cmap.initMap(mapModel.getMapSettings);
         for each (var modelElementMap:ItemElementMap in model) {
             id = menu.findIdItemMenu(modelElementMap.name)
             elementMap = cmap.findActivElement(modelElementMap.x, modelElementMap.y);
             if (cmap.findActivElement(modelElementMap.x, modelElementMap.y) != null) {
                 elementMap.setElementParametrs(modelElementMap);
-               if (cacheImage.isImage(Settings.imageElementMap + "/" + id + "/" + modelElementMap.state)){
-                      elementMap.initImage(cacheImage.findImage(Settings.imageElementMap + "/" + id + "/" + modelElementMap.state));
-               }   else{
-                cacheImage.loadImage(Settings.imageElementMap + "/" + id + "/" + modelElementMap.state);
+          //     if (cacheImage.isImage(Settings.imageElementMap + "/" + id + "/" + modelElementMap.state)){
+          //            elementMap.initImage(cacheImage.findImage(Settings.imageElementMap + "/" + id + "/" + modelElementMap.state));
+          //     }   else{
+             //  cacheImage.loadImage(Settings.imageElementMap + "/" + id + "/" + modelElementMap.state);
                 loader = new ElementMapLoader(Settings.imageElementMap + "/" + id + "/" + modelElementMap.state);
                 elementMap.initImage(loader);
                }
 
-            }
+           // }
         }
 
     }

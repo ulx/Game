@@ -13,12 +13,15 @@ import flash.events.Event;
 import flash.events.*;
 import flash.utils.setTimeout;
 public class MapModel extends EventDispatcher {
-      private var xml:XML;
+    private var xml:XML;
     private var loader:URLLoader;
 
     private var listElementMap:Array;
+    private var mapSettings:MapSettings;
+
     public function MapModel(s:String) {
         listElementMap = new Array();
+        mapSettings  = new MapSettings();
         loader = new URLLoader();
         loader.addEventListener(Event.COMPLETE, xmlLoaded);
         loader.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
@@ -41,12 +44,17 @@ public class MapModel extends EventDispatcher {
     }
     private function initMap():void {
         var list:XMLList =  xml.elements();
+          for each (var field:XML in xml.elements()) {
+            mapSettings.name = field.name();
+            mapSettings.sizeX = field.attribute("size_x");
+            mapSettings.sizeY = field.attribute("size_y");
+            mapSettings.zeroX = field.attribute("zero_x");
+            mapSettings.zeroY = field.attribute("zero_y");
+          }
         var i:int = 1;
         for each (var item:XML in list.elements()) {
-            trace(item.name());
             listElementMap.push(new ItemElementMap(item.name(), item.attribute("id"), item.attribute("state"), item.attribute("x"),item.attribute("y")));
-
-            }
+        }
         notifyListeners(Settings.loadItemMap);
     }
       private function notifyListeners(ev:String) {
@@ -56,6 +64,8 @@ public class MapModel extends EventDispatcher {
     public  function get listElement():Array{
         return listElementMap;
     }
-
+    public function get getMapSettings():MapSettings{
+        return mapSettings;
+    }
 }
 }
