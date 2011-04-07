@@ -12,8 +12,9 @@ import flash.net.URLRequest;
 import flash.net.URLLoader
 import flash.events.Event;
 import flash.events.*;
+import Controller.ElementMapLoader;
 
-public class Cache extends EventDispatcher{
+public class Cache extends Sprite{
     private var listImage:Array;
     private var element: Array;
 
@@ -37,16 +38,13 @@ public class Cache extends EventDispatcher{
        private function ioErrorHandler(e:Event):void {
            trace("ioErrorHandler");
     }
-    public function addItem(s:String, image:Sprite):void {
-        element = new Array();
-        element["id"] = s;
-        element["sprite"] = image;
-        listImage.push(element);
+    public function addItem(s:String, image:ElementMapLoader = null):void {
+           listImage.push(new CacheItem(s, image));
     }
     public function findImage(s:String):Sprite{
-         for (var i:int; i < listImage.length; i++){
-            if(listImage[i].id == s){
-                return listImage[i].sprite;
+        for each(var item:CacheItem in listImage) {
+            if(item.id == s){
+                return item.imageItem;
             }
         }
         return null;

@@ -19,7 +19,7 @@ public class Settings {
     public static var eventClickItemMenu:String = "clickItemMenu";
     public static var loadItemMenu:String = "LoadMenu";
 
-    public static var stage:int = 5;
+
 
     //Commands
     public static var commandTurn:String  =  "http://"+ host +":"+port +"/turn";

@@ -38,14 +38,6 @@ public class ElementMapLoader extends Sprite {
           var e:Event = new Event(ev, false, false);
           dispatchEvent(e);
     }
-    public function load(id:int = 0, state:int = 0):Loader{
-        loader.load(new URLRequest(Settings.imageElementMap + "/" + id + "/" + state));
-        return loader;
-    }
-     public function initBackground():Loader{
-            loader.load(new URLRequest(Settings.imageElementMap));
-         return loader;
-    }
 
 }
 }

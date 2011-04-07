@@ -14,6 +14,8 @@ import Setting.Settings;
 
 import cache.Cache;
 
+import flash.display.Sprite;
+
 import model.ItemElementMap;
 
 import flash.events.MouseEvent;
@@ -34,22 +36,22 @@ import model.MapModel
 
 
 public class main extends Sprite {
-    var modelMenu:MenuModel;
-    var menu:CMenu;
-    var cmap:CMap;
-    var plantButton:PlantButton;
-    var makeButton:MakeButton;
-    var collectedButton:CollectedButton;
-    var listPlantElementMap:Array;
-    var commandServer:CommandServer;
-    var mapModel:MapModel;
-    var cacheImage:Cache;
+   private var modelMenu:MenuModel;
+   private var menu:CMenu;
+   private var cmap:CMap;
+   private var plantButton:PlantButton;
+   private var makeButton:MakeButton;
+   private var collectedButton:CollectedButton;
+   private var listPlantElementMap:Array;
+   private var commandServer:CommandServer;
+   private var mapModel:MapModel;
+   private var cacheImage:Cache;
 
     public function main() {
         initGame();
 
-        this.x = stage.x
-        this.y = stage.y
+        this.x = stage.x ;
+        this.y = stage.y ;
         this.width = stage.width / 3;
         this.height = stage.height / 3;
 
@@ -74,7 +76,7 @@ public class main extends Sprite {
 
 
         modelMenu.addEventListener(Settings.loadItemMenu, initMenu);
-        plantButton.addEventListener(Settings.plantButton, buttonPlantButtonPress)
+        plantButton.addEventListener(Settings.plantButton, buttonPlantButtonPress);
         makeButton.addEventListener(Settings.makeButton, buttonMakePress);
         collectedButton.addEventListener(Settings.collectedButton, buttonCollectedButtonPress);
 
@@ -107,7 +109,7 @@ public class main extends Sprite {
     }
 
     private function buttonCollectedButtonPress(ev:String):void {
-        var list = cmap.listElement;
+        var list:Array = cmap.listElement;
         var i:int = 0;
         for each(var item:ElementMap in cmap.listElement) {
             if ((item.state == 5) || (item.state == 10) || (item.state == 15)) {
@@ -151,23 +153,28 @@ public class main extends Sprite {
         var elementMap:ElementMap;
         var loader:ElementMapLoader;
         var model = mapModel.listElement;
-        var controller = cmap.listElement;
         var str:String;
+       
         var id:int = 0;
         cmap.initMap(mapModel.getMapSettings);
         for each (var modelElementMap:ItemElementMap in model) {
-            id = menu.findIdItemMenu(modelElementMap.name)
+            id = menu.findIdItemMenu(modelElementMap.name);
             elementMap = cmap.findActivElement(modelElementMap.x, modelElementMap.y);
             if (cmap.findActivElement(modelElementMap.x, modelElementMap.y) != null) {
                 elementMap.setElementParametrs(modelElementMap);
                 str = Settings.imageElementMap + "/" + id + "/" + modelElementMap.state;
-                if (cacheImage.isImage(str) == true) {
-                    trace("find cache = true");
+                if ((cacheImage.isImage(str) == true)) {
+                    trace(id);
+                    trace(cacheImage.findImage(str).name);
+                    trace(cacheImage.findImage(str).height);
                     elementMap.initImage(cacheImage.findImage(str));
                 } else {
                     loader = new ElementMapLoader(str);
+                    trace("loader" + loader.height);
                     cacheImage.addItem(str, loader);
-                    elementMap.initImage(cacheImage.findImage(str));
+
+                    elementMap.initImage(loader);
+
                 }
 
             }
@@ -178,6 +185,7 @@ public class main extends Sprite {
     private function initMenu(ev:String):void {
         menu.createMenu(modelMenu.propertisMenu);
     }
+   
 }
 
 }
