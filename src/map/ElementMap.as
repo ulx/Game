@@ -62,6 +62,7 @@ public class ElementMap extends Sprite {
         square.addChild(image);
         image.x = square.x;
         image.y = square.y - Settings.dyMap / 2;
+        //добавить подсчет коодинат от высоты.
 
       //  square.width = Settings.dxMap;
       //  square.height = Settings.dyMap;

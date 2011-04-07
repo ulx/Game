@@ -30,7 +30,8 @@ public class MenuItem extends Sprite {
         field.addEventListener(MouseEvent.MOUSE_OVER, mouseOverItem);
 		field.addEventListener(MouseEvent.MOUSE_OUT, mouseOutItem);
 		field.addEventListener(MouseEvent.CLICK, itemClicked);
-      //  field.addEventListener(Settings.eventClickItemMenu, visibleFalse)
+
+        field.backgroundColor =  Settings.menuItemNoActiv
         field.border = true;
         field.background = true;
         field.width = Settings.menuItemWidth;

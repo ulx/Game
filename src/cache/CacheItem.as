@@ -9,7 +9,7 @@ package cache {
 import flash.display.Sprite;
 public class CacheItem {
     private var pID:String;
-    private var pImage:Sprite
+    private var pImage:Sprite;
     public function CacheItem(id:String = "default", sprite:Sprite = null) {
         pID = id;
         pImage = sprite;
@@ -25,6 +25,9 @@ public class CacheItem {
     }
     public function set imageItem(sp:Sprite):void{
          this.pImage = sp;
+    }
+    public function clone():CacheItem {
+        return new CacheItem(this.id, this.imageItem);
     }
 }
 }

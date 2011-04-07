@@ -24,7 +24,7 @@ public class CButton extends Sprite {
         textLabel = new TextField()
         button.graphics.clear();
         button.graphics.beginFill(0xD4D4D4); // grey color
-        button.graphics.drawRoundRect(0, 0, 80, 25, 10, 10); // x, y, width, height, ellipseW, ellipseH
+        button.graphics.drawRoundRect(0, 0, 180, 50, 10, 10); // x, y, width, height, ellipseW, ellipseH
         button.graphics.endFill();
         textLabel.text = "dafault";
         textLabel.x = 10;

@@ -16,6 +16,8 @@ import cache.Cache;
 
 import flash.display.Sprite;
 
+import flash.events.Event;
+
 import model.ItemElementMap;
 
 import flash.events.MouseEvent;
@@ -85,8 +87,8 @@ public class main extends Sprite {
 
         //Locate
         plantButton.locate(100, 50);
-        makeButton.locate(100, 70);
-        collectedButton.locate(100, 90);
+        makeButton.locate(100, 100);
+        collectedButton.locate(100, 150);
 
         //add
         this.addChild(background);
@@ -99,7 +101,7 @@ public class main extends Sprite {
 
     }
 
-    private function buttonPlantButtonPress(ev:String):void {
+    private function buttonPlantButtonPress(ev:String=null):void {
         var i:int = 0;
         while (i < listPlantElementMap.length) {
             commandServer = new CommandServer();
@@ -130,11 +132,11 @@ public class main extends Sprite {
     }
 
     private function menuVisibleTrue(ev:MouseEvent):void {
-        menu.draw(100, 100);
+        menu.draw(350, 50);
 
     }
 
-    private function menuVisibleFalse(ev:String):void {
+    private function menuVisibleFalse(event:Event):void {
         var i:int = 0;
         var mI:MenuItem;
         menu.visibleFalse();
@@ -172,9 +174,7 @@ public class main extends Sprite {
                     loader = new ElementMapLoader(str);
                     trace("loader" + loader.height);
                     cacheImage.addItem(str, loader);
-
                     elementMap.initImage(loader);
-
                 }
 
             }
