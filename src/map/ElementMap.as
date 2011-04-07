@@ -9,7 +9,6 @@ package map {
 import Setting.Settings;
 
 import flash.display.Sprite;
-import flash.display.Loader;
 import flash.events.MouseEvent;
 import flash.events.Event;
 
@@ -17,16 +16,14 @@ import model.ItemElementMap;
 
 public class ElementMap extends Sprite {
 
-    var square:Sprite;
-    var ID:int = 0;
-    var NAME:String = "default";
-    var STATE:int = 0;
-    var locateX:int = 0;
-    var locateY:int = 0;
-    var PLANT:int = 0;
-    var STATUS:Boolean = false;
-    var numberLine:int = 0;
-    var numberColumn:int = 0;
+    private var square:Sprite;
+    private var ID:int = 0;
+    private var NAME:String = "default";
+    private var STATE:int = 0;
+    private var PLANT:int = 0;
+    private var STATUS:Boolean = false;
+    private var numberLine:int = 0;
+    private var numberColumn:int = 0;
 
     public function ElementMap() {
         this.addEventListener(MouseEvent.CLICK, mouseClick);

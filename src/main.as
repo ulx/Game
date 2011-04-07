@@ -14,7 +14,6 @@ import Setting.Settings;
 
 import cache.Cache;
 
-import flash.display.Sprite;
 
 import flash.events.Event;
 
@@ -101,7 +100,7 @@ public class main extends Sprite {
 
     }
 
-    private function buttonPlantButtonPress(ev:String=null):void {
+    private function buttonPlantButtonPress(ev:Event):void {
         var i:int = 0;
         while (i < listPlantElementMap.length) {
             commandServer = new CommandServer();
@@ -110,9 +109,8 @@ public class main extends Sprite {
         }
     }
 
-    private function buttonCollectedButtonPress(ev:String):void {
-        var list:Array = cmap.listElement;
-        var i:int = 0;
+    private function buttonCollectedButtonPress(ev:Event):void {
+
         for each(var item:ElementMap in cmap.listElement) {
             if ((item.state == 5) || (item.state == 10) || (item.state == 15)) {
                 commandServer = new CommandServer();
@@ -125,7 +123,7 @@ public class main extends Sprite {
 
     }
 
-    private function buttonMakePress(ev:String):void {
+    private function buttonMakePress(ev:Event):void {
         mapModel = new MapModel(Settings.commandTurn);
         mapModel.addEventListener(Settings.loadItemMap, initElementMap);
 
@@ -151,10 +149,10 @@ public class main extends Sprite {
         }
     }
 
-    private function initElementMap(ev:String):void {
+    private function initElementMap(ev:Event):void {
         var elementMap:ElementMap;
         var loader:ElementMapLoader;
-        var model = mapModel.listElement;
+        var model:Array = mapModel.listElement;
         var str:String;
        
         var id:int = 0;
@@ -165,7 +163,7 @@ public class main extends Sprite {
             if (cmap.findActivElement(modelElementMap.x, modelElementMap.y) != null) {
                 elementMap.setElementParametrs(modelElementMap);
                 str = Settings.imageElementMap + "/" + id + "/" + modelElementMap.state;
-                if ((cacheImage.isImage(str) == true)) {
+                if (cacheImage.isImage(str)) {
                     trace(id);
                     trace(cacheImage.findImage(str).name);
                     trace(cacheImage.findImage(str).height);
@@ -182,7 +180,7 @@ public class main extends Sprite {
 
     }
 
-    private function initMenu(ev:String):void {
+    private function initMenu(ev:Event):void {
         menu.createMenu(modelMenu.propertisMenu);
     }
    

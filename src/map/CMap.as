@@ -30,8 +30,8 @@ public class CMap extends Sprite {
             return stateInit;
         }
 
-        var x0 = Settings.x0Map + Settings.widthMap / 2 - Settings.dxMap / 2;
-        var y0 = Settings.y0Map - Settings.heightMap + Settings.dyMap / 2;
+        var x0:int = Settings.x0Map + Settings.widthMap / 2 - Settings.dxMap / 2;
+        var y0:int = Settings.y0Map - Settings.heightMap + Settings.dyMap / 2;
         var lenght:int = x0;
         var lenght_y:int = y0;
         var i:int = 0;
@@ -48,7 +48,7 @@ public class CMap extends Sprite {
                 item.lineIndex = i;
                 item.columnIndex = j;
                 lenght -= Settings.dxMap / 2;
-                lenght_y += Settings.dyMap / 2
+                lenght_y += Settings.dyMap / 2;
                 j++;
             }
             x0 += Settings.dxMap / 2;
@@ -60,13 +60,7 @@ public class CMap extends Sprite {
         return  true;
     }
 
-    private function initIdElementMap():void {
-        var i:int = 0;
-        while (i < listElementMap.length) {
-            listElementMap[i].id = i;
-            i++;
-        }
-    }
+
 
     public function findActivElement(x:int, y:int):ElementMap {
         var i:int = 0;

@@ -7,7 +7,6 @@
  */
 package model {
 import Setting.Settings;
-import flash.display.Loader;
 import flash.display.Sprite;
 import flash.net.URLRequest;
 import flash.net.URLLoader
@@ -42,7 +41,7 @@ public class MenuModel extends Sprite {
     }
     private function initMenu():void {
 
-        var i:int = 0
+        var i:int = 0 ;
         for each (var item:XML in xml.children()) {
             elementMenu = new Array();
             elementMenu["name"] = item.name();
@@ -52,7 +51,7 @@ public class MenuModel extends Sprite {
         }
         notifyListeners(Settings.loadItemMenu);
     }
-      private function notifyListeners(ev:String) {
+      private function notifyListeners(ev:String):void {
           var e:Event = new Event(ev, false, false);
           dispatchEvent(e);
     }

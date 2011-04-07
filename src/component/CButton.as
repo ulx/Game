@@ -13,15 +13,15 @@ import flash.events.*;
 public class CButton extends Sprite {
 
     protected var button:Sprite = new Sprite();
-    protected  var textLabel:TextField
+    protected  var textLabel:TextField ;
     public function CButton() {
-        drawButton()
+        drawButton() ;
         button.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
         addChild(button);
     }
 
     private function drawButton():void {
-        textLabel = new TextField()
+        textLabel = new TextField() ;
         button.graphics.clear();
         button.graphics.beginFill(0xD4D4D4); // grey color
         button.graphics.drawRoundRect(0, 0, 180, 50, 10, 10); // x, y, width, height, ellipseW, ellipseH
@@ -40,7 +40,7 @@ public class CButton extends Sprite {
         this.x = x;
         this.y = y;
     }
-      protected function notifyListeners(ev:String) {
+      protected function notifyListeners(ev:String):void {
           var e:Event = new Event(ev, false, false);
           dispatchEvent(e);
     }

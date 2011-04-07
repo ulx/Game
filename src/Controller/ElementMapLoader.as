@@ -29,7 +29,7 @@ public class ElementMapLoader extends Sprite {
        private function ioErrorHandler(e:Event):void {
            trace("ioErrorHandler");
     }
-     function xmlLoaded(e:Event):void {
+    private function xmlLoaded(e:Event):void {
          xml = new XML(e.target.data);
          initImage(Settings.loadImageElementMap);
     }

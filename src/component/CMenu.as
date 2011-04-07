@@ -13,8 +13,7 @@ import flash.events.MouseEvent;
 import flash.events.Event;
 public class CMenu extends Sprite {
     private var listMenuItem:Array;
-    private var mX:int;
-    private var mID:int;
+
     public function CMenu() {
         listMenuItem  = new Array();
         this.addEventListener(MouseEvent.CLICK, menuPress) ;
@@ -40,7 +39,7 @@ public class CMenu extends Sprite {
     private function menuPress(event:MouseEvent):void{
            notifyListeners(Settings.eventClickItemMenu);
     }
-     protected function notifyListeners(ev:String) {
+     protected function notifyListeners(ev:String):void {
           var e:Event = new Event(ev, false, false);
           dispatchEvent(e);
     }

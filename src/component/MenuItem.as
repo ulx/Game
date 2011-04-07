@@ -31,7 +31,7 @@ public class MenuItem extends Sprite {
 		field.addEventListener(MouseEvent.MOUSE_OUT, mouseOutItem);
 		field.addEventListener(MouseEvent.CLICK, itemClicked);
 
-        field.backgroundColor =  Settings.menuItemNoActiv
+        field.backgroundColor =  Settings.menuItemNoActiv ;
         field.border = true;
         field.background = true;
         field.width = Settings.menuItemWidth;
@@ -42,21 +42,19 @@ public class MenuItem extends Sprite {
         this.height = Settings.menuItemHeight;
     }
 
-    private function visibleFalse(){
-               //   field.visible = false;
-    }
 
-     private function itemClicked(ev:String) {
+
+     private function itemClicked(ev:Event):void {
          notifyListenersClick(Settings.eventClickItemMenu);
          STATUS = true;
     }
 
-    private function notifyListeners(ev:String) {
+    private function notifyListeners(ev:String):void {
           var e:Event = new Event(ev, false, false);
           dispatchEvent(e);
     }
 
-    private function notifyListenersClick(ev:String) {
+    private function notifyListenersClick(ev:String):void {
           var e:Event = new Event(ev, false, false);
           dispatchEvent(e);
     }
@@ -65,7 +63,7 @@ public class MenuItem extends Sprite {
 
     }
 
-    private function mouseOverItem(ev:String):void {
+    private function mouseOverItem(ev:Event):void {
         field.backgroundColor =  Settings.menuItemActiv;
     }
     public function get label():String{
