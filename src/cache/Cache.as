@@ -23,9 +23,9 @@ public class Cache extends Sprite{
     }
 
     public function isImage(id:String):Boolean{
-        for (var i:int; i < listImage.length; i++){
-            if(listImage[i].id == id){
-                return true;
+      for each(var item:CacheItem in listImage) {
+            if(item.id == id){
+                  return true;
             }
         }
         return false;

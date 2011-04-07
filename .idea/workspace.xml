@@ -16,12 +16,7 @@
   <component name="ChangeListManager">
     <list id="027158b5-0aba-4c59-b120-d6b06b749238" name="Default" comment="" />
     <list default="true" id="80fff21f-49f1-4cbe-8aaf-2cabd0fea746" name="New changelist1" comment="asdad">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cache/CacheItem.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/ElementMapLoader.as" afterPath="$PROJECT_DIR$/src/Controller/ElementMapLoader.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Setting/Settings.as" afterPath="$PROJECT_DIR$/src/Setting/Settings.as" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cache/Cache.as" afterPath="$PROJECT_DIR$/src/cache/Cache.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.as" afterPath="$PROJECT_DIR$/src/main.as" />
     </list>
     <ignored path="Game.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -103,10 +98,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Cache.as" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Cache.as" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cache/Cache.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="90" selection-start="1087" selection-end="1087" vertical-scroll-proportion="0.0">
+            <state line="43" column="29" selection-start="1100" selection-end="1109" vertical-scroll-proportion="0.9444444">
               <folding />
             </state>
           </provider>
@@ -157,10 +152,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ElementMapLoader.as" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ElementMapLoader.as" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/ElementMapLoader.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="62" selection-start="1282" selection-end="1282" vertical-scroll-proportion="0.9502924">
+            <state line="42" column="62" selection-start="1282" selection-end="1282" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -202,9 +197,9 @@
         <option value="$PROJECT_DIR$/src/model/MapModel.as" />
         <option value="$PROJECT_DIR$/src/Setting/Settings.as" />
         <option value="$PROJECT_DIR$/src/cache/CacheItem.as" />
-        <option value="$PROJECT_DIR$/src/cache/Cache.as" />
         <option value="$PROJECT_DIR$/src/main.as" />
         <option value="$PROJECT_DIR$/src/Controller/ElementMapLoader.as" />
+        <option value="$PROJECT_DIR$/src/cache/Cache.as" />
       </list>
     </option>
   </component>
@@ -726,13 +721,6 @@
         <state line="30" column="41" selection-start="1056" selection-end="1075" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cache/Cache.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="90" selection-start="1087" selection-end="1087" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main.as">
       <provider selected="true" editor-type-id="text-editor">
         <state line="111" column="50" selection-start="3002" selection-end="3002" vertical-scroll-proportion="0.0">
@@ -742,7 +730,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/ElementMapLoader.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="62" selection-start="1282" selection-end="1282" vertical-scroll-proportion="0.9502924">
+        <state line="42" column="62" selection-start="1282" selection-end="1282" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cache/Cache.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="29" selection-start="1100" selection-end="1109" vertical-scroll-proportion="0.9444444">
           <folding />
         </state>
       </provider>
