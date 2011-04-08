@@ -30,4 +30,5 @@ public class CacheItem {
         return new CacheItem(this.id, this.imageItem);
     }
 }
+
 }

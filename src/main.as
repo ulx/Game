@@ -165,12 +165,11 @@ public class main extends Sprite {
                 str = Settings.imageElementMap + "/" + id + "/" + modelElementMap.state;
                 if (cacheImage.isImage(str)) {
                     trace(id);
-                    trace(cacheImage.findImage(str).name);
-                    trace(cacheImage.findImage(str).height);
+                    trace("cacheImage" + cacheImage.findImage(str).name);
                     elementMap.initImage(cacheImage.findImage(str));
                 } else {
                     loader = new ElementMapLoader(str);
-                    trace("loader" + loader.height);
+                    trace("loader" + loader.name);
                     cacheImage.addItem(str, loader);
                     elementMap.initImage(loader);
                 }

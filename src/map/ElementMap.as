@@ -57,8 +57,8 @@ public class ElementMap extends Sprite {
     public function initImage(image:Sprite):void {
       //  square.alpha = 1;
         square.addChild(image);
-        image.x = square.x;
-        image.y = square.y - Settings.dyMap / 2;
+       // image.x = square.x;
+      //  image.y = square.y - Settings.dyMap / 2;
         //добавить подсчет коодинат от высоты.
 
       //  square.width = Settings.dxMap;
