@@ -7,36 +7,50 @@
  */
 package Controller {
 import Setting.Settings;
+
+import flash.display.BitmapData;
 import flash.display.Loader;
 import flash.display.Sprite;
 import flash.net.URLRequest;
 import flash.events.Event;
 import flash.events.*;
-public class ElementMapLoader extends Sprite {
-    private var xml:XML;
+
+import cache.Cache
+
+public class ElementMapLoader extends Loader {
     private var loader:Loader;
+    private var cacheElement:Cache;
+    private var id:String;
+    private var textureMap:BitmapData;
     public function ElementMapLoader(s:String) {
-        loader = new Loader();
-        loader.load(new URLRequest(s));
-        loader.addEventListener(Event.COMPLETE, xmlLoaded);
-        loader.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
-        loader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-        this.addChild(loader);
+        cacheElement =  Cache.instance;
+        id = s;
+        if (!cacheElement.isImage(s)) {
+            loader = new Loader();
+            loader.load(new URLRequest(s));
+            loader.addEventListener(Event.COMPLETE, imageLoaded);
+            loader.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
+            loader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+            cacheElement.addItem(s, loader);
+        }
     }
-     private function httpStatusHandler(e:Event):void {
+
+    private function httpStatusHandler(e:Event):void {
         trace("httpStatusHandler");
     }
-       private function ioErrorHandler(e:Event):void {
-           trace("ioErrorHandler");
+
+    private function ioErrorHandler(e:Event):void {
+        trace("ioErrorHandler");
     }
-    private function xmlLoaded(e:Event):void {
-         xml = new XML(e.target.data);
-         initImage(Settings.loadImageElementMap);
+
+    private function imageLoaded(e:Event):void {
+      textureMap = e.target.data.content.bitmapData;
+      initImage(Settings.loadImageElementMap);
     }
 
     private function initImage(ev:String):void {
-          var e:Event = new Event(ev, false, false);
-          dispatchEvent(e);
+        var e:Event = new Event(ev, false, false);
+        dispatchEvent(e);
     }
 
 }

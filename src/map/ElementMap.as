@@ -11,7 +11,8 @@ import Setting.Settings;
 import flash.display.Sprite;
 import flash.events.MouseEvent;
 import flash.events.Event;
-
+import flash.display.Loader;
+import flash.display.Bitmap;
 import model.ItemElementMap;
 
 public class ElementMap extends Sprite {
@@ -54,9 +55,12 @@ public class ElementMap extends Sprite {
         dispatchEvent(e);
     }
 
-    public function initImage(image:Sprite):void {
+    public function initImage(image:Loader):void {
       //  square.alpha = 1;
+        trace("x = " + image.x) ;
+        trace("name = " + image.name) ;
         square.addChild(image);
+
        // image.x = square.x;
       //  image.y = square.y - Settings.dyMap / 2;
         //добавить подсчет коодинат от высоты.
@@ -95,6 +99,7 @@ public class ElementMap extends Sprite {
         this.removeChild(square);
         setDefault();
     }
+
 
     public function get id():int {
         return this.ID;

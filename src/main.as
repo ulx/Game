@@ -68,7 +68,7 @@ public class main extends Sprite {
         collectedButton = new CollectedButton();
         plantButton = new PlantButton;
         listPlantElementMap = new Array();
-        cacheImage = new Cache();
+        cacheImage = Cache.instance;
         var background:ElementMapLoader = new ElementMapLoader(Settings.imageElementMap);
         //Listener
         menu.addEventListener(Settings.eventClickItemMenu, menuVisibleFalse);
@@ -90,7 +90,7 @@ public class main extends Sprite {
         collectedButton.locate(100, 150);
 
         //add
-        this.addChild(background);
+        this.addChild(cacheImage.findImage(Settings.imageElementMap));
         this.addChild(cmap);
         this.addChild(plantButton);
         this.addChild(makeButton);
@@ -163,16 +163,8 @@ public class main extends Sprite {
             if (cmap.findActivElement(modelElementMap.x, modelElementMap.y) != null) {
                 elementMap.setElementParametrs(modelElementMap);
                 str = Settings.imageElementMap + "/" + id + "/" + modelElementMap.state;
-                if (cacheImage.isImage(str)) {
-                    trace(id);
-                    trace("cacheImage" + cacheImage.findImage(str).name);
-                    elementMap.initImage(cacheImage.findImage(str));
-                } else {
-                    loader = new ElementMapLoader(str);
-                    trace("loader" + loader.name);
-                    cacheImage.addItem(str, loader);
-                    elementMap.initImage(loader);
-                }
+                loader = new ElementMapLoader(str);
+                elementMap.initImage(cacheImage.findImage(str));
 
             }
         }
@@ -186,4 +178,3 @@ public class main extends Sprite {
 }
 
 }
-
