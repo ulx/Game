@@ -13,7 +13,7 @@ public class Settings {
     public static var menuItemWidth:int = 100;
 
     public static var host:String = "localhost";
-    public static var port:String = "8080";
+    public static var port:String = "8000";
     public static var xmlMenu:String = "http://"+ host +":"+port +"/list";
 
     public static var eventClickItemMenu:String = "clickItemMenu";

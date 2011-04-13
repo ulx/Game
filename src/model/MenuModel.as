@@ -46,6 +46,7 @@ public class MenuModel extends Sprite {
             elementMenu = new Array();
             elementMenu["name"] = item.name();
             elementMenu["id"] = item.attribute("id");
+            elementMenu["level_max"] = item.attribute("level_max");
             menu[i] = elementMenu;
             i++;
         }

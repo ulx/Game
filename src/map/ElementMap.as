@@ -25,7 +25,7 @@ public class ElementMap extends Sprite {
     private var STATUS:Boolean = false;
     private var numberLine:int = 0;
     private var numberColumn:int = 0;
-
+    private var LEVEL_MAX:int = 0;
     public function ElementMap() {
         this.addEventListener(MouseEvent.CLICK, mouseClick);
         setDefault();
@@ -96,6 +96,7 @@ public class ElementMap extends Sprite {
         STATE = 0;
         PLANT = 0;
         STATUS = false;
+        LEVEL_MAX = 0;
         this.removeChild(square);
         setDefault();
     }
@@ -151,6 +152,13 @@ public class ElementMap extends Sprite {
 
     public function set columnIndex(index:int):void {
         this.numberColumn = index;
+    }
+      public function get level_max():int {
+        return this.LEVEL_MAX;
+    }
+
+    public function set level_max(level_max:int):void {
+        this.LEVEL_MAX = level_max;
     }
 }
 }

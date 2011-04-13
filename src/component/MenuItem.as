@@ -21,11 +21,13 @@ public class MenuItem extends Sprite {
     public var STATUS:Boolean;
     private var  ID:int;
     private var LABEL:String;
-    public function MenuItem(label:String, id:int = 0) {
+    private var LEVEL_MAX:int = 0;
+    public function MenuItem(label:String, id:int = 0, level_max:int = 0) {
         STATUS = false;
         propertis = new Array();
         LABEL = label;
         ID = id;
+        LEVEL_MAX =  level_max;
         field = new TextField();
         field.addEventListener(MouseEvent.MOUSE_OVER, mouseOverItem);
 		field.addEventListener(MouseEvent.MOUSE_OUT, mouseOutItem);
@@ -78,6 +80,11 @@ public class MenuItem extends Sprite {
     public function set status(status:Boolean):void{
          this.STATUS = status;
     }
-
+     public function get level_max():int{
+        return this.LEVEL_MAX;
+    }
+    public function set level_max(level_max:int):void{
+         this.LEVEL_MAX = level_max;
+    }
 }
 }

@@ -53,8 +53,8 @@ public class Cache extends Sprite {
     public function findImage(id:String):Loader {
         for each(var item:CacheItem in listImage) {
             if (item.id == id) {
-               return item.clone(item.imageItem);
-              //  return item.imageItem;
+             //  return item.clone(item.imageItem);
+                return item.imageItem;
             }
         }
         return null;

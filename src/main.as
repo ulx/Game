@@ -69,6 +69,7 @@ public class main extends Sprite {
         plantButton = new PlantButton;
         listPlantElementMap = new Array();
         cacheImage = Cache.instance;
+        //added  background in to cache
         var background:ElementMapLoader = new ElementMapLoader(Settings.imageElementMap);
         //Listener
         menu.addEventListener(Settings.eventClickItemMenu, menuVisibleFalse);
@@ -82,7 +83,6 @@ public class main extends Sprite {
         collectedButton.addEventListener(Settings.collectedButton, buttonCollectedButtonPress);
 
 
-        //  elementMapBackground.initImage(background);
 
         //Locate
         plantButton.locate(100, 50);
@@ -112,7 +112,7 @@ public class main extends Sprite {
     private function buttonCollectedButtonPress(ev:Event):void {
 
         for each(var item:ElementMap in cmap.listElement) {
-            if ((item.state == 5) || (item.state == 10) || (item.state == 15)) {
+            if (item.state == item.level_max){
                 commandServer = new CommandServer();
                 commandServer.dig(item.lineIndex, item.columnIndex);
                 item.status = false;
@@ -139,9 +139,11 @@ public class main extends Sprite {
         var mI:MenuItem;
         menu.visibleFalse();
         while (i < cmap.listElement.length) {
-            if ((cmap.listElement[i].status) && (cmap.listElement[i].plant == 0)) {
+            if (!((cmap.listElement[i].status) && (cmap.listElement[i].plant == 0))) {
+            } else {
                 mI = menu.findActivItemMenu();
                 cmap.listElement[i].plant = mI.id;
+                cmap.listElement[i].level_max = mI.level_max
                 listPlantElementMap.push(cmap.listElement[i]);
                 break;
             }
