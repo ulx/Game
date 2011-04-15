@@ -32,7 +32,7 @@ public class Cache extends Sprite {
 
     public function Cache() {
         if (!__allowInstantiation) {
-            throw new Error("Вы не можете создавать экземпляры класса при помощи конструктора. Для доступа к экземпляру используйте Cache.instance.");
+            throw new Error("Для доступа к экземпляру используйте Cache.instance.");
         }
           listImage = new Array();
     }

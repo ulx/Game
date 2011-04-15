@@ -6,19 +6,17 @@
  * To change this template use File | Settings | File Templates.
  */
 package Controller {
-import Setting.Settings;
+
 import flash.display.Loader;
 import flash.net.URLRequest
+
 public class CommandServer {
-    private    var loader:Loader;
-    public function CommandServer() {
-            loader = new Loader();
+    private var loader:Loader;
+
+    public function CommandServer(s:String) {
+        loader = new Loader();
+        loader.load(new URLRequest(s));
     }
-     public function seed(x:int = 0, y:int = 0, id:int = 0):void{
-        loader.load(new URLRequest(Settings.commandSeed + "/" + x + "/" + y + "/" + id));
-     }
-     public function dig(x:int = 0, y:int = 0):void{
-        loader.load(new URLRequest(Settings.commandDig + "/" + x + "/" + y));
-     }
+
 }
 }

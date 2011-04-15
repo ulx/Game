@@ -17,7 +17,7 @@ import flash.events.*;
 
 import cache.Cache
 
-public class ElementMapLoader extends Loader {
+public class ElementMapLoader extends Sprite {
     private var loader:Loader;
     private var cacheElement:Cache;
     private var id:String;
@@ -25,14 +25,15 @@ public class ElementMapLoader extends Loader {
     public function ElementMapLoader(s:String) {
         cacheElement =  Cache.instance;
         id = s;
-        if (!cacheElement.isImage(s)) {
+       // if (!cacheElement.isImage(s)) {
             loader = new Loader();
             loader.load(new URLRequest(s));
             loader.addEventListener(Event.COMPLETE, imageLoaded);
             loader.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
             loader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-            cacheElement.addItem(s, loader);
-        }
+           // cacheElement.addItem(s, loader);
+        this.addChild(loader);
+        //}
     }
 
     private function httpStatusHandler(e:Event):void {

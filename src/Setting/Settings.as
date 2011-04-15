@@ -25,6 +25,8 @@ public class Settings {
     public static var commandTurn:String  =  "http://"+ host +":"+port +"/turn";
     public static var commandSeed:String  =  "http://"+ host +":"+port +"/seed";
     public static var commandDig:String   =  "http://"+ host +":"+port +"/dig";
+    public static var commandInit:String   =  "http://"+ host +":"+port +"/init";
+
 
     //Map
     public static var imageElementMap:String = "http://"+ host +":"+port +"/image";

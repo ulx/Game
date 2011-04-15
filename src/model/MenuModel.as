@@ -44,7 +44,7 @@ public class MenuModel extends Sprite {
         var i:int = 0 ;
         for each (var item:XML in xml.children()) {
             elementMenu = new Array();
-            elementMenu["name"] = item.name();
+            elementMenu["name"] = item.attribute("name");
             elementMenu["id"] = item.attribute("id");
             elementMenu["level_max"] = item.attribute("level_max");
             menu[i] = elementMenu;

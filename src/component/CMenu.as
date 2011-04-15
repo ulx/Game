@@ -48,7 +48,7 @@ public class CMenu extends Sprite {
     public function createMenu(elementMenu:Array):void {
         var count:Number = 0;
         for (var j:int; j < elementMenu.length; j++) {
-            var i:MenuItem = new MenuItem(elementMenu[j].name, elementMenu[j].id);
+            var i:MenuItem = new MenuItem(elementMenu[j].name, elementMenu[j].id,  elementMenu[j].level_max);
             this.addChild(i);
             listMenuItem.push(i);
             count++;
@@ -56,15 +56,15 @@ public class CMenu extends Sprite {
         }
 
     }
-    public function findIdItemMenu(name:String):int{
+    public function findIdItemMenu(name:String):MenuItem{
         var i :int = 0;
         while (i < listMenuItem.length){
             if(listMenuItem[i].label == name){
-                return  listMenuItem[i].id;
+                return  listMenuItem[i];
             }
             i++
         }
-        return -1;
+        return null;
     }
     public function draw(x:int = 0, y:int = 0): void{
           this.visible = true;

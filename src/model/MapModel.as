@@ -53,7 +53,7 @@ public class MapModel extends EventDispatcher {
           }
         var i:int = 1;
         for each (var item:XML in list.elements()) {
-            listElementMap.push(new ItemElementMap(item.name(), item.attribute("id"), item.attribute("state"), item.attribute("x"),item.attribute("y")));
+            listElementMap.push(new ItemElementMap(item.attribute("name"), item.attribute("id"), item.attribute("state"), item.attribute("x"),item.attribute("y")));
         }
         notifyListeners(Settings.loadItemMap);
     }

@@ -26,9 +26,14 @@ public class ElementMap extends Sprite {
     private var numberLine:int = 0;
     private var numberColumn:int = 0;
     private var LEVEL_MAX:int = 0;
+    private var defaultX:int = 0;
+    private var defaultY:int = 0;
+
     public function ElementMap() {
         this.addEventListener(MouseEvent.CLICK, mouseClick);
         setDefault();
+
+         draw(1, 0xffaacc, 0.5);
     }
 
     private function mouseClick(e:MouseEvent):void {
@@ -55,18 +60,15 @@ public class ElementMap extends Sprite {
         dispatchEvent(e);
     }
 
-    public function initImage(image:Loader):void {
-      //  square.alpha = 1;
-        trace("x = " + image.x) ;
-        trace("name = " + image.name) ;
+    public function initImage(image:Sprite):void {
+
+        if ((this.state > 0)&&(this.state < this.level_max))square.removeChildAt(0);
         square.addChild(image);
 
-       // image.x = square.x;
-      //  image.y = square.y - Settings.dyMap / 2;
+
         //добавить подсчет коодинат от высоты.
 
-      //  square.width = Settings.dxMap;
-      //  square.height = Settings.dyMap;
+
 
 
     }
@@ -74,10 +76,14 @@ public class ElementMap extends Sprite {
     public function locate(x:int, y:int):void {
         this.x = x;
         this.y = y;
+        defaultX = x;
+        defaultY = y;
     }
 
     private function setDefault():void {
         square = new Sprite();
+        this.x = defaultX;
+        this.y = defaultY;
         this.addChild(square);
         draw(3, 0x00ff00, 0);
     }
